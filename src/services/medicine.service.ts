@@ -1,0 +1,18 @@
+import { env } from "@/env";
+
+const API_URL = env.API_URL;
+
+export const medicineService = {
+  getAllMedicine : async function () {
+    try {
+      const res = await fetch(`${API_URL}/api/medicines`);
+
+      const data = await res.json();
+
+      return {data: data, error : null};
+    } catch (error) {
+      console.log(error);
+      return {data : null, error : {message : "Something Went Wrong !"}};
+    }
+  }
+}

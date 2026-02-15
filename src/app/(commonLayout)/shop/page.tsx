@@ -1,12 +1,19 @@
-export default function ShopPage () {
-  
+
+import MedicineCards from "@/components/modules/home/MedicineCard";
+import { medicineService } from "@/services/medicine.service";
+import { MedicinePost } from "@/types/routes.type";
+
+export default async function Home() {
+  const {data} = await medicineService.getAllMedicine();
+
+  // console.log(data);
   return (
-    
-    <div>
-
-      <h1>This is Shop Page</h1>
-
+    <div className="grid grid-cols-3 max-w-7xl mx-auto px-4 gap-6">
+      {
+        data?.data?.map((item : MedicinePost) => (
+        <MedicineCards key={item.id} item = {item} />
+      )) 
+      }
     </div>
-    
   );
 }
