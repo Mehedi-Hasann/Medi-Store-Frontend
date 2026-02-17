@@ -18,19 +18,20 @@ import { adminRoutes } from "@/routes/adminRoutes"
 import { customerRoutes } from "@/routes/customerRoutes"
 import { sellerRoutes } from "@/routes/sellerRoutes"
 import { Route } from "@/types/routes.type"
+import { Roles } from "@/constants/roles"
 
 
 export function AppSidebar({user, ...props }: {user : {role: string} & React.ComponentProps<typeof Sidebar>}) {
   
   let routes: Route[] = [];
   switch (user.role) {
-    case 'admin':
+    case Roles.admin:
       routes = adminRoutes;
       break;
-    case 'customer':
+    case Roles.customer:
       routes = customerRoutes;
       break;
-    case 'seller':
+    case Roles.seller:
       routes = sellerRoutes
       break;
   
@@ -55,9 +56,9 @@ export function AppSidebar({user, ...props }: {user : {role: string} & React.Com
             <SidebarGroupContent>
               <SidebarMenu>
                 {item.items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
-                      <Link href={item.url}>{item.title}</Link>
+                  <SidebarMenuItem className="my-2" key={item.title}>
+                    <SidebarMenuButton className="flex justify-center items-center text-lg font-medium" asChild>
+                      <Link className="bg-cyan-800 h-12" href={item.url}>{item.title}</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}

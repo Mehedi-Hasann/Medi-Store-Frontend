@@ -5,9 +5,17 @@ export const sellerRoutes: Route[] = [
     title: "Seller Management",
     items: [
       {
-        title: "Seller Dashboard",
-        url: "seller-dashboard",
+        title: "All Orders",
+        url: "/seller/orders",
       },
+      {
+        title: "All Medicines",
+        url: "/seller/medicines",
+      },
+      {
+        title: "Dashboard",
+        url: "/seller/dashboard",
+      }
     ],
   },
 ]

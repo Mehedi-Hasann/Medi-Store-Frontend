@@ -4,7 +4,7 @@ export default function SellerDashboard () {
     
     <div>
 
-      <h1>This is SellerDashboard</h1>
+      <h1>This is Seller Dashboard</h1>
 
     </div>
     

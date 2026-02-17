@@ -19,14 +19,14 @@ export async function proxy (request : NextRequest) {
   if(!isAuthenticated){
     return NextResponse.redirect( new URL("/login",request.url) );
   }
-  if(role===Roles.admin && (pathname.startsWith('/dashboard') || pathname.startsWith('/seller-dashboard') || pathname.startsWith('/customer-dashboard') ) ){
-    return NextResponse.redirect( new URL("/admin-dashboard",request.url) );
+  if(role===Roles.admin && (pathname.startsWith('/dashboard') || pathname.startsWith('/seller') || pathname.startsWith('/customer') ) ){
+    return NextResponse.redirect( new URL("/admin",request.url) );
   }
-  else if(role===Roles.seller && (pathname.startsWith('/dashboard') || pathname.startsWith('/admin-dashboard') || pathname.startsWith('/customer-dashboard') ) ){
-    return NextResponse.redirect( new URL("/seller-dashboard",request.url) );
+  else if(role===Roles.seller && (pathname.startsWith('/dashboard') || pathname.startsWith('/admin') || pathname.startsWith('/customer') ) ){
+    return NextResponse.redirect( new URL("/seller",request.url) );
   }
-  else if(role===Roles.customer && (pathname.startsWith('/dashboard') || pathname.startsWith('/admin-dashboard') || pathname.startsWith('/seller-dashboard') ) ){
-    return NextResponse.redirect( new URL("/customer-dashboard", request.url) )
+  else if(role===Roles.customer && (pathname.startsWith('/dashboard') || pathname.startsWith('/admin') || pathname.startsWith('/seller') ) ){
+    return NextResponse.redirect( new URL("/customer", request.url) )
   }
 
   return NextResponse.next();
@@ -35,10 +35,10 @@ export async function proxy (request : NextRequest) {
 export const config = {
   matcher : ['/dashboard',
     '/dashboard/:path*',
-    '/admin-dashboard',
-    '/admin-dashboard/:path*',
-    '/seller-dashboard',
-    '/seller-dashboard/:path*',
-    '/customer-dashboard',
-    '/customer-dashboard/:path*']
+    '/admin',
+    '/admin/:path*',
+    '/seller',
+    '/seller/:path*',
+    '/customer',
+    '/customer/:path*']
 }
